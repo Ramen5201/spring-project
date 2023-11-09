@@ -170,8 +170,46 @@
 		    <artifactId>commons-dbcp</artifactId>
 		    <version>1.4</version>
 		</dependency>
+		
+		<!-- 2. Lombok 라이브러리 -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.24</version>
+		    <scope>provided</scope>
+		</dependency>
+		
+		<!-- 3. Spring Security Module(core, web, config) -->
+		<dependency>
+	          <groupId>org.springframework.security</groupId>
+	          <artifactId>spring-security-core</artifactId>
+	          <version>5.5.2</version>
+	    </dependency>
+	    <dependency>
+	          <groupId>org.springframework.security</groupId>
+	          <artifactId>spring-security-web</artifactId>
+	          <version>5.5.2</version>
+	     </dependency>
+	     <dependency>
+	          <groupId>org.springframework.security</groupId>
+	          <artifactId>spring-security-config</artifactId>
+	          <version>5.5.2</version>
+	      </dependency>
+	      
+	      <!-- 4.파일 업로드를 위한 라이브러리 -->
+	      <dependency>
+			    <groupId>commons-fileupload</groupId>
+			    <artifactId>commons-fileupload</artifactId>
+			    <version>1.5</version>
+		  </dependency>
+		
+		  <dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.11.0</version>
+		  </dependency>
+		
 	</dependencies>
-	
 	
     <build>
         <plugins>

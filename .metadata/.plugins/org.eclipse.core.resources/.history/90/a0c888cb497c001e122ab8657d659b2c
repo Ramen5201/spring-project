@@ -1,0 +1,28 @@
+package com.kh.spring.member.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller // Controller타입의 어노테이션 빈 스캐닝을 통해 자동으로 빈 등록
+public class MemberController {
+	
+	/*
+	 * Spring에서 파라미터(요청시 전달값)을 받는 방법
+	 * 
+	 * 1. HttpServletRequest를 이용해서 전달받기(JSP/Servlet방식)
+	 */
+	
+	@RequestMapping(value="/login.me") // RequestMapping타입의 어노테이션을 붙여줌으로써 HandlerMapping 등록
+	public String loginMember(HttpServletRequest request) {
+		String userId = request.getParameter("id");
+		String userPwd = request.getParameter("pwd");
+		
+		System.out.println("ID : " + userId);
+		System.out.println("ID : " + userPwd);
+		
+		return "main";
+	}
+	
+}

@@ -1,0 +1,21 @@
+package com.kh.spring.board.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.spring.member.model.service.MemberService;
+
+@Controller
+public class BoardController {
+	
+	@Autowired
+	private BoardService boardSerivce;
+	
+	@RequestMapping("list.bo")
+	public String selectList() {
+		
+		
+		return "board/boardListView";
+	}
+}

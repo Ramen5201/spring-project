@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.kh.spring.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.kh.spring.board.model.service.BoardServiceImpl"/>
+    <fullyQualifiedTypeName name="com.kh.spring.common.template.Pagenation"/>
+</qualifiedTypeNameHistroy>
