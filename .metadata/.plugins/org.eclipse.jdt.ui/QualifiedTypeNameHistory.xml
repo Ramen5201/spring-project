@@ -6,4 +6,6 @@
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.kh.spring.board.model.service.BoardServiceImpl"/>
     <fullyQualifiedTypeName name="com.kh.spring.common.template.Pagenation"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>

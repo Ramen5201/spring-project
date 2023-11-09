@@ -99,7 +99,7 @@ public class BoardController {
 		
 		// 첨부파일 저장할 폴더의 물리적인 경우
 		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
-		
+		System.out.println(savePath);
 		try {
 			upfile.transferTo(new File(savePath + changeName));
 		} catch (IllegalStateException | IOException e) {

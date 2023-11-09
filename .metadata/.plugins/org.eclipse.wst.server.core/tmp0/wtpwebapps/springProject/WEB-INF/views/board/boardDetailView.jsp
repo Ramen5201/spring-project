@@ -69,17 +69,22 @@
            </c:if>
           
              <form action="" method="post" id="postForm">
-           		<input type="hidden" name=bno value="7">
-           		<input type="hidden" name="filePath" value="이미지.jpg">
+           		<input type="hidden" name=bno value="${b.boardNo}">
+           		<input type="hidden" name="filePath" value="${b.changeName}">
              </form>
             
             <script>
-            	function postFromSubmit() {
+            	function postFromSubmit(num) {
             		if(num == 1) {
-            			
+            			$("#postForm").attr('action', 'updateForm.bo');
+                        //document.querySelector("#postForm").setAttribute('action', 'updateForm.bo');
             		} else {
-            			
+            			$("#postForm").attr('action', 'delete.bo');
+                        //document.querySelector("#postForm").setAttribute('action', 'delete.bo');
             		}
+
+                    $("#postForm").submit();
+                    //document.querySelector("#postForm").submit();
             	}
             </script>
           

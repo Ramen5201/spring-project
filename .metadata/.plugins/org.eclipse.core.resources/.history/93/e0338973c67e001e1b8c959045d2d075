@@ -60,7 +60,6 @@
  		  AND STATUS ='Y'
  	</update>
  	
- 	<!-- 게시글 상세조회 sql -->
  	<select id="selectBoard" resultMap="boardResult">
  		SELECT BOARD_NO,
  			   BOARD_TITLE,
@@ -75,7 +74,6 @@
  		   AND BOARD_NO = ${boardNo}
  	</select>
  	
- 	<!-- 게시글 삭제 관련sql -->
  	<update id="deleteBoard">
  		UPDATE BOARD
  		  SET STATUS = 'N'
