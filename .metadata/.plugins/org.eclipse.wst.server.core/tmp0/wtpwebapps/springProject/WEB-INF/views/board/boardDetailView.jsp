@@ -38,13 +38,13 @@
                     <th>첨부파일</th>
                     <td colspan="3">
 						<c:choose>
-							<c:when test="${not empty b.originName }">
-							<!-- case1 -->
+							<c:when test="${ not empty b.originName }">
+								<!-- case1 -->
                         		<a href="${b.changeName}" download="${b.originName}">${b.originName}</a>
                         	</c:when>
                         	<c:otherwise>
-							<!-- case2 -->
-							   첨부파일 없음
+								<!-- case2 -->
+								첨부파일 없음
 							</c:otherwise>
 						</c:choose>
                     </td>
@@ -60,33 +60,33 @@
             <br>
 
    			<c:if test="${ loginUser.userId eq b.boardWriter }">
-   			<!-- 수정하기, 삭제하기 버튼은 이 글이 본인이 작성한 글일 경우에만 보여져야 함 -->
-            <div align="center">
-                <a class="btn btn-primary" onclick="postFromSubmit(1)">수정하기</a>
-                <a class="btn btn-danger" onclick="postFromSubmit(2)">삭제하기</a>
-            </div>
-            <br><br>
-           </c:if>
-          
+	   			<!-- 수정하기, 삭제하기 버튼은 이 글이 본인이 작성한 글일 경우에만 보여져야 함 -->
+	            <div align="center">
+	                <a class="btn btn-primary" onclick="postFormSubmit(1)">수정하기</a>
+	                <a class="btn btn-danger" onclick="postFormSubmit(2)">삭제하기</a>
+	            </div>
+	            <br><br>
+            </c:if>
+            
              <form action="" method="post" id="postForm">
-           		<input type="hidden" name=bno value="${b.boardNo}">
+           		<input type="hidden" name="bno" value="${b.boardNo}">
            		<input type="hidden" name="filePath" value="${b.changeName}">
              </form>
-            
+             
             <script>
-            	function postFromSubmit(num) {
-            		if(num == 1) {
-            			$("#postForm").attr('action', 'updateForm.bo');
-                        //document.querySelector("#postForm").setAttribute('action', 'updateForm.bo');
+            	function postFormSubmit(num){
+            		if(num === 1){
+                        $("#postForm").attr('action', 'updateForm.bo');
+            			//document.querySelector("#postForm").setAttribute('action','updateForm.bo');
             		} else {
-            			$("#postForm").attr('action', 'delete.bo');
-                        //document.querySelector("#postForm").setAttribute('action', 'delete.bo');
+                        $("#postForm").attr('action', 'delete.bo');
+            			//document.querySelector("#postForm").setAttribute('action','delete.bo');
             		}
-
                     $("#postForm").submit();
                     //document.querySelector("#postForm").submit();
             	}
             </script>
+            
           
             <!-- 댓글 기능은 나중에 ajax 배우고 나서 구현할 예정! 우선은 화면구현만 해놓음 -->
             <table id="replyArea" class="table" align="center">

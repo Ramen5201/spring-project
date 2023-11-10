@@ -24,16 +24,16 @@
 	<context:component-scan base-package="com.kh.spring" />
 	
 	<!-- 
-		*사용자가 어떤 url로 요청 시 이 문서가 읽혀진다고 보면 된다
+		*사용자가 어떤 url로 요청 시 이문서가 읽혀진다고 보면 된다
+	
+		handlerMapping을 통해서 url로 요청시 어떤 Controller를 구동시킬껀지 알아내야한다. => 요청값에 적합한 Controller가 실행되도록
 		
-		handlerMappgin을 통해서 url로 요청 시 어떤 Controller를 구동시킬껀지 알아내야한다. => 요청값에 적합한 Controller가  실행되도록 
+		1.요청될때마다 실행될 Controller클래스들이 bean으로 등록되어있어야한다.
+		<beans:bean class="com.kh.spring.member.controller.LoginController" id="loginController">
 		
-		1. 요청될때마다 실행될 Controller클래스들이 bean으로 등록되어 있어야한다.
-		<beans:bean class="com.kh.spring.member.controller.LoginController" id="loginController" />
+		2.어떤 url로 요청시 어떤 Controller를 구동시킬건지 매핑시키는 HandlerMapping관련 클래스도 빈으로 등록해야함
 		
-		2. 어떤 url로 요청시 어떤 Controller를 구동시킬건지 매핑시키는 HandlerMapping관련 클래스도 빈으로 등록해야함
-		
-		<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" >
+		<beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 			<bean:property name="mapping">
 				<beans:prop key="login.me">loginController</beans:prop>
 			</bean:property>
@@ -42,8 +42,10 @@
 		
 		xml방식
 		장점 : xml문서 내에서 한눈에 볼수 있어서 관리적인 편의성이 일부높다
-		단점 : bean객수가 많아지면 오히려 관리하기 어렵다.
-			  여러개발자가 같은 xml파일을 수정하면 충돌이 일어날 수 있다.
+		단점 : bean갯수가 많아지면 오히려 관리하기 어렵다.
+			 여러개발자가 같은 xml파일을 수정하면 충돌이 일어날 수 잇다.
+			 
 	 -->
+	
 	
 </beans:beans>

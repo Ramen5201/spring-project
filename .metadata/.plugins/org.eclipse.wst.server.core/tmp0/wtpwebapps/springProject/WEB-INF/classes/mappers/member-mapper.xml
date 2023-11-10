@@ -17,39 +17,39 @@
 		<result column="MODIFY_DATE" property="modifyDate" />
 		<result column="STATUS" property="status" />
 	</resultMap>
-	
-	<!-- 로그인쿼리문 -->
+
+	<!-- 로그인 쿼리문 -->
 	<select id="loginMember" resultMap="memberResult">
 		SELECT USER_ID ,
-		       USER_PWD ,
-		       USER_NAME ,
-		       EMAIL ,
-		       GENDER ,
-		       AGE ,
-		       PHONE ,
-		       ADDRESS ,
-		       ENROLL_DATE ,
-		       MODIFY_DATE ,
-		       STATUS
+		        USER_PWD ,
+		        USER_NAME ,
+		        EMAIL ,
+		        GENDER ,
+		        AGE ,
+		        PHONE ,
+		        ADDRESS ,
+		        ENROLL_DATE ,
+		        MODIFY_DATE , 
+		        STATUS
 		 FROM MEMBER
 		WHERE USER_ID = #{userId}
-		<!-- AND USER_PWD = #{userPwd} -->
-		 AND STATUS = 'Y'
+	<!--  AND USER_PWD = #{userPwd} -->
+		  AND STATUS = 'Y'
 	</select>
 	
 	<!-- 회원가입을 위한 쿼리문 -->
 	<insert id="insertMember">
 		INSERT INTO MEMBER(
-			USER_ID,
-			USER_PWD,
-			USER_NAME,
-			EMAIL,
-			GENDER,
-			AGE,
-			PHONE,
+			USER_ID ,
+			USER_PWD ,
+			USER_NAME ,
+			EMAIL ,
+			GENDER ,
+			AGE ,
+			PHONE ,
 			ADDRESS
-		   )
-		VALUES(
+			)
+		VALUES (
 			#{userId} ,
 			#{userPwd} ,
 			#{userName} ,
@@ -58,24 +58,22 @@
 			#{age} ,
 			#{phone} ,
 			#{address}
-		)
+			)
 	</insert>
-	
 	<update id="updateMember">
 		UPDATE MEMBER
-		  SET USER_NAME = #{userName},
-		  	  EMAIL = #{email},
-		  	  AGE = #{age},
-		  	  GENDER = #{gender},
-		  	  PHONE = #{phone},
-		  	  ADDRESS = #{address},
-		  	  MODIFY_DATE = SYSDATE
-		  WHERE USER_ID = #{userId} 
+		   SET USER_NAME = #{userName},
+		       EMAIL = #{email},
+		       AGE = #{age},
+		       PHONE = #{phone},
+		       ADDRESS = #{address},
+		       GENDER = #{gender},
+		       MODIFY_DATE = SYSDATE
+		 WHERE USER_ID = #{userId}
 	</update>
-	
 	<update id="deleteMember">
 		UPDATE MEMBER
-		  SET STATUS = 'N'
-		WHERE USER_ID = #{userId}
-	</update> 
+		   SET STATUS = 'N'
+		 WHERE USER_ID = #{userId}
+	</update>
 </mapper>

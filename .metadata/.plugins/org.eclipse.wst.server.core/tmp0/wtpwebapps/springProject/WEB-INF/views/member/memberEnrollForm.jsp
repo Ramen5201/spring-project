@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
@@ -22,13 +23,13 @@
                 <div class="form-group">
                     <label for="userId">* ID : </label>
                     <input type="text" class="form-control" id="userId" placeholder="Please Enter ID" name="userId" required>
-                    <div id="checkResult" style="font-size:0.7em; display:none;"></div>
+                    <div id="checkResult" style="font-size:0.7em; display:none">다섯글자가 넘습니다</div>
 					<br>
                     <label for="userPwd">* Password : </label>
                     <input type="password" class="form-control" id="userPwd" placeholder="Please Enter Password" name="userPwd" required> <br>
 
                     <label for="checkPwd">* Password Check : </label>
-                    <input type="password" class="form-control" id="checkPwd" placeholder="Please Enter Password"  required> <br>
+                    <input type="password" class="form-control" id="checkPwd" placeholder="Please Enter Password" required> <br>
 
                     <label for="userName">* Name : </label>
                     <input type="text" class="form-control" id="userName" placeholder="Please Enter Name" name="userName" required> <br>
@@ -53,12 +54,47 @@
                 </div> 
                 <br>
                 <div class="btns" align="center">
-                    <button type="submit" class="btn btn-primary disabled">회원가입</button>
+                    <button type="submit" class="btn btn-primary" disabled>회원가입</button>
                     <button type="reset" class="btn btn-danger">초기화</button>
                 </div>
             </form>
         </div>
         <br><br>
+        
+        <script>
+        	$(function(){
+        		const idInput = document.querySelector('#enrollForm input[name=userId]');
+        		idInput.onkeyup = function(ev){
+        			console.log(ev);
+        			$.ajax({
+                        url: "idCheck.me",
+                        data: {
+                            "checkId" : idInput.value
+                        },
+                        success: function(result){
+    						if(result == "NNNNY" ) {
+    							if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")) {
+    								let submitBtn = document.querySelector("#enroll-form button[type=submit]");
+    								submitBtn.removeAttribute("disabled");
+    								
+    								idInput.setAttribute("readonly", true);
+    							} else {
+    								idInput.focus();
+    							}
+    						} else {
+    							alert("이미 존재하거나 탈퇴한 회원입니다.");
+    							idInput.focus();
+    						}
+                        },
+                        error: function(){
+                            console.log("아이디 중복체크용 ajax통신실패");
+                        }
+                    })
+                }
+        		}
+        	})
+        
+        </script>
 
 
     </div>

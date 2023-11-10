@@ -19,10 +19,10 @@
             <form action="update.me" method="post">
                 <div class="form-group">
                     <label for="userId">* ID : </label>
-                    <input type="text" class="form-control" id="userId" value="${loginUser.userId }" name="userId" readonly> <br>
+                    <input type="text" class="form-control" id="userId" value="${loginUser.userId}" name="userId" readonly> <br>
 
                     <label for="userName">* Name : </label>
-                    <input type="text" class="form-control" id="userName" value="${loginUser.userName }" name="userName" required> <br>
+                    <input type="text" class="form-control" id="userName" value="${loginUser.userName}" name="userName" required> <br>
 
                     <label for="email"> &nbsp; Email : </label>
                     <input type="text" class="form-control" id="email" value="${loginUser.email }" name="email"> <br>
@@ -45,17 +45,18 @@
                 
                 <script>
                 	$(function(){
-                		if("${loginUser.gender}" != "") {
-                			$('input[value="${loginUser.gender}"]').attr("checked", true);
-                		}
-                	})
-
-                  //  window.onload = function() {
-                  //      if("${loginUser.gender}" != "") {
-                  //              document.querySelector('input=')
-                  //      }
-                  //  }
+                        if("${loginUser.gender}" != "") {
+                            $('input[value="${loginUser.gender}"]').attr("checked", true);
+                        }
+                    })
+                    
+                    // window.onload = function(){
+                    //     if("${loginUser.gender}" != "") {
+                    //         document.querySelector('input[value="${loginUser.gender}"]').checked = true;
+                    //     }
+                    // }
                 </script>
+              
                 <br>
                 <div class="btns" align="center">
                     <button type="submit" class="btn btn-primary">수정하기</button>
