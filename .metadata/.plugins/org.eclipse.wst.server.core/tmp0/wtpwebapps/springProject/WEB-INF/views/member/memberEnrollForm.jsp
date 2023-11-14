@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 
@@ -23,7 +22,7 @@
                 <div class="form-group">
                     <label for="userId">* ID : </label>
                     <input type="text" class="form-control" id="userId" placeholder="Please Enter ID" name="userId" required>
-                    <div id="checkResult" style="font-size:0.7em; display:none">다섯글자가 넘습니다</div>
+                    <div id="checkResult" style="font-size:0.7em; display:none;"></div>
 					<br>
                     <label for="userPwd">* Password : </label>
                     <input type="password" class="form-control" id="userPwd" placeholder="Please Enter Password" name="userPwd" required> <br>
@@ -64,33 +63,45 @@
         <script>
         	$(function(){
         		const idInput = document.querySelector('#enrollForm input[name=userId]');
+                let eventFlag;
         		idInput.onkeyup = function(ev){
-        			console.log(ev);
-        			$.ajax({
-                        url: "idCheck.me",
-                        data: {
-                            "checkId" : idInput.value
-                        },
-                        success: function(result){
-    						if(result == "NNNNY" ) {
-    							if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")) {
-    								let submitBtn = document.querySelector("#enroll-form button[type=submit]");
-    								submitBtn.removeAttribute("disabled");
-    								
-    								idInput.setAttribute("readonly", true);
-    							} else {
-    								idInput.focus();
-    							}
-    						} else {
-    							alert("이미 존재하거나 탈퇴한 회원입니다.");
-    							idInput.focus();
-    						}
-                        },
-                        error: function(){
-                            console.log("아이디 중복체크용 ajax통신실패");
+                  
+                    clearTimeout(eventFlag);
+                    eventFlag = setTimeout(function(){
+                        //최소 다섯글자 이상 입력했을때만 ajax요청해서 중복체크
+                        if(idInput.value.length >= 5) {
+                            $.ajax({
+                                url: 'idCheck.me',
+                                data: {checkId : idInput.value},
+                                success: function(result){
+                                    const checkResult = document.getElementById("checkResult");
+                                
+                                    if (result === "NNNNN"){ //사용불가능한 경우
+                                        document.querySelector("#enrollForm [type='submit']").disabled = true;
+                                        checkResult.style.display = 'block';
+                                        checkResult.style.color = 'red';
+                                        checkResult.innerText = "이미 사용중인 아이디입니다.";
+                                    } else { //사용가능한 경우
+                                        //회원가입버튼 활성화
+                                        document.querySelector("#enrollForm [type='submit']").disabled = false;
+                                     
+                                        //사용가능한 아이디입니다. 화면 출력
+                                        checkResult.style.display = 'block';
+                                        checkResult.style.color = 'green';
+                                        checkResult.innerText = "사용가능한 아이디입니다.";
+                                    }
+                                },
+                                error: function(){
+                                    console.log("아이디 중복체크 ajax통신 실패");
+                                }
+                            })
+                        } else {
+                            document.querySelector("#enrollForm [type='submit']").disabled = true;
+                            checkResult.style.display = 'none';
                         }
-                    })
-                }
+                        
+                    }, 300);
+    
         		}
         	})
         
